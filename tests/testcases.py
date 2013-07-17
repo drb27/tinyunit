@@ -10,6 +10,10 @@ class ExampleTests(TestCase):
     def testTrue(self):
         self.assertTrue(True)
 
+    @testmethod
+    def testFails(self):
+        self.assertTrue(False)
+
 class OtherTests(TestCase):
 
     def __init__(self):
