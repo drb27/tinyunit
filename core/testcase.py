@@ -24,8 +24,16 @@ class TestCase(object):
         if not expr:
             raise TestCase.AssertFailureException()
 
+    def assertFalse(self,expr):
+        if expr:
+            raise TestCase.AssertFailureException()
+
     def assertEquals(self,a,b):
         if not a==b:
+            raise TestCase.AssertFailureException()
+
+    def assertNotEqual(self,a,b):
+        if a==b:
             raise TestCase.AssertFailureException()
 
     def assertRaises(self,fn,exception):
