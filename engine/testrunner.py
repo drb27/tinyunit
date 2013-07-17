@@ -1,5 +1,6 @@
 from ..core.testcase import TestCase
 from .inspector import Inspector
+from .formatters import DefaultFormatter
 
 class result(object):
     success=0
@@ -7,8 +8,38 @@ class result(object):
     error=2
     unknown=3
 
+class TestRecord(object):
+
+    def __init__(self,method,result):
+        self.method=method
+        self.result=result
+
+class TestRecorder(object):
+
+    def __init__(self):
+        self.casemap= {}
+    
+    def record(self,case,testmethod,result):
+        rec=TestRecord(testmethod,result)
+        
+        if not case in self.casemap.keys():
+            self.casemap[case]=[]
+        
+        self.casemap[case].append(rec)
+        return rec
+
 def runcase(case):
     """ Runs all the tests in the given test case"""
+
+    # create a recorder
+    recorder = TestRecorder()
+
+    # create a default formatter
+    f = DefaultFormatter()
+
+    # start the case
+    print(f.format_start_set(),end="")
+    print(f.format_start_case(case),end="")
 
     # Discover the tests in the test case
     i=Inspector()
@@ -32,10 +63,14 @@ def runcase(case):
             r = result.error
             raise e
         finally:
-            if r==result.success:
-                print(".",end="")
-            if r==result.failure:
-                print("F",end="")
-            if r==result.error:
-                print("E",end="")
 
+            # record the result
+            record = recorder.record(case,testname,r)
+
+            # Display progress
+            print(f.format_method_result(case,record),end="")
+
+    # end the case
+    print(f.format_end_case(case),end="")
+    print(f.format_end_set(),end="")
+    return recorder
