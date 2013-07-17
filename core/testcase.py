@@ -35,7 +35,3 @@ class TestCase(object):
             pass
         else:
             raise TestCase.AssertFailureException()
-
-    @testmethod
-    def dummytest(self):
-        pass
