@@ -30,4 +30,4 @@ class Inspector(object):
         m = [method for method in dir(case) if callable(getattr(case,method))]
 
         # return the list of methods decorated with @testmethod
-        return [method for method in m if hasattr(getattr(e,method),'__testmethod__')]
+        return [method for method in m if hasattr(getattr(case,method),'__testmethod__')]
