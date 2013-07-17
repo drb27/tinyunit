@@ -1,3 +1,5 @@
+from tinyunit import __version__
+
 class Formatter(object):
 
         def __init__(self):
@@ -21,7 +23,7 @@ class Formatter(object):
 class DefaultFormatter(Formatter):
 
         def format_start_set(self):
-            return "tinyunit vx.yz: Starting test run\n"
+            return "tinyunit %(version)s: Starting test run\n" % { 'version' : __version__ }
 
         def format_end_set(self):
             return "Test run complete.\n"
