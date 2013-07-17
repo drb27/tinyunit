@@ -7,8 +7,30 @@ class result(object):
     error=2
     unknown=3
 
+class TestRecord(object):
+
+    def __init__(self,method,result):
+        self.method=method
+        self.result=result
+
+class TestRecorder(object):
+
+    def __init__(self):
+        self.casemap= {}
+    
+    def record(self,case,testmethod,result):
+        rec=TestRecord(testmethod,result)
+        
+        if not case in self.casemap.keys():
+            self.casemap[case]=[]
+        
+        self.casemap[case].append(rec)
+
 def runcase(case):
     """ Runs all the tests in the given test case"""
+
+    # create a recorder
+    recorder = TestRecorder()
 
     # Discover the tests in the test case
     i=Inspector()
@@ -32,6 +54,11 @@ def runcase(case):
             r = result.error
             raise e
         finally:
+
+            # record the result
+            recorder.record(case,testname,r)
+
+            # Display progress
             if r==result.success:
                 print(".",end="")
             if r==result.failure:
@@ -39,3 +66,4 @@ def runcase(case):
             if r==result.error:
                 print("E",end="")
 
+    return recorder
