@@ -29,7 +29,12 @@ class DefaultFormatter(Formatter):
         def format_end_set(self):
             return "Test run complete.\n"
 
-        def format_method_result(self,case,record):
-                #return "%(method)s ... %(result)d\n" % record.__dict__
-                return ("%(method)s ... " % record.__dict__) + result.toString(record.result,True) + "\n"
+        def format_method_result(self,case,record,width=30):
+                method=record.method
 
+                if len(method)>width:
+                    method = method[0:width-1] + "*"
+
+                method=method.ljust(width,'.')
+                return method + ":" + result.toString(record.result,True) + "\n"
+                    
