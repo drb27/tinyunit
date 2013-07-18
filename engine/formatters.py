@@ -31,5 +31,5 @@ class DefaultFormatter(Formatter):
 
         def format_method_result(self,case,record):
                 #return "%(method)s ... %(result)d\n" % record.__dict__
-                return ("%(method)s ... " % record.__dict__) + result.toString(record.result) + "\n"
+                return ("%(method)s ... " % record.__dict__) + result.toString(record.result,True) + "\n"
 
