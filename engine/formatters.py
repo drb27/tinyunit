@@ -1,4 +1,5 @@
 from tinyunit import __version__
+from tinyunit.engine.result import result
 
 class Formatter(object):
 
@@ -29,6 +30,6 @@ class DefaultFormatter(Formatter):
             return "Test run complete.\n"
 
         def format_method_result(self,case,record):
-                return "%(method)s ... %(result)d\n" % record.__dict__
-
+                #return "%(method)s ... %(result)d\n" % record.__dict__
+                return ("%(method)s ... " % record.__dict__) + result.toString(record.result) + "\n"
 

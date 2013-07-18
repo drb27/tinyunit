@@ -1,12 +1,7 @@
 from ..core.testcase import TestCase
 from .inspector import Inspector
 from .formatters import DefaultFormatter
-
-class result(object):
-    success=0
-    failure=1
-    error=2
-    unknown=3
+from .result import result
 
 class TestRecord(object):
 
