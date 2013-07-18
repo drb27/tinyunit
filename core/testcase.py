@@ -41,5 +41,7 @@ class TestCase(object):
             fn()
         except exception as e:
             pass
+        except Exception as e:
+            raise e
         else:
             raise TestCase.AssertFailureException()
