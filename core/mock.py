@@ -1,37 +1,42 @@
 import sys
 
-def patch(s):
+def containing_attribute(symbol):
+
+    if symbol.count('.')==0:
+        return __name__
+    else:
+        return symbol[0:symbol.rfind('.')]
+
+def leaf(fqs):
+    if fqs.count('.')==0:
+        return fqs
+    else:
+        return fqs[1+fqs.rfind('.'):]
+
+def lookup_symbol(symbol):
+    
+    module = containing_attribute(symbol)
+    return vars(sys.modules[module])[leaf(symbol)]
+
+def replace_symbol(symbol,newvalue):
+    
+    module = containing_attribute(symbol)
+    vars(sys.modules[module])[leaf(symbol)] = newvalue
+
+def patch(old,new):
 
     def _patched(f,*args,**kwargs):
         def __patched(self,*args,**kwargs):
-                old = vars(sys.modules[__name__])['unpatched']
+                restore = lookup_symbol(old)
                 try:
                         #patch
-                        
-                        vars(sys.modules[__name__])['unpatched'] = patched                        
+                        #vars(sys.modules[__name__])['unpatched'] = patched                        
+                        replace_symbol(old,lookup_symbol(new)) 
+
                         #call
                         return f(self,*args,**kwargs)
                 finally:
                         #Unpatch
-                        vars(sys.modules[__name__])['unpatched'] = old                        
+                        replace_symbol(old,restore)
         return __patched
     return _patched
-
-def unpatched():
-    return 42
-
-def patched():
-    return 43
-
-class patchtest(object):
-
-    def __init__(self,base=0):
-        self.base = base
-
-    @patch('thing')
-    def meaning(self):
-        return self.base+unpatched()
-
-    @patch('otherthing')
-    def addmeaning(self,x):
-        return self.base+x+unpatched()
