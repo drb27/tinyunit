@@ -30,7 +30,6 @@ def patch(old,new):
                 restore = lookup_symbol(old)
                 try:
                         #patch
-                        #vars(sys.modules[__name__])['unpatched'] = patched                        
                         replace_symbol(old,lookup_symbol(new)) 
 
                         #call

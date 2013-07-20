@@ -2,6 +2,7 @@ from ..core.testcase import TestCase
 from .inspector import Inspector
 from .formatters import DefaultFormatter
 from .result import result
+from .stats import Stats
 
 class TestRecord(object):
 
@@ -28,6 +29,9 @@ def runcase(case):
 
     # create a recorder
     recorder = TestRecorder()
+
+    # create a stats object
+    s = Stats()
 
     # create a default formatter
     f = DefaultFormatter()
@@ -61,6 +65,7 @@ def runcase(case):
 
             # record the result
             record = recorder.record(case,testname,r)
+            s.addResult(r)
 
             # Display progress
             print(f.format_method_result(case,record),end="")
@@ -68,4 +73,5 @@ def runcase(case):
     # end the case
     print(f.format_end_case(case),end="")
     print(f.format_end_set(),end="")
+    print(str(s))
     return recorder
