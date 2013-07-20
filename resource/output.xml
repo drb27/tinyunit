@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<?xml-stylesheet type='text/xsl' href='results.xsl'?>
+<testrun>
+<testcase name='ComplexTests'>
+<method>
+<name>testAReallyLongThingThatMustBeCoolAndYesWeDoGetTruncated</name>
+<result>ok</result>
+</method>
+<method>
+<name>testAdd</name>
+<result>ok</result>
+</method>
+<method>
+<name>testConstructor</name>
+<result>ok</result>
+</method>
+<method>
+<name>testPatch</name>
+<result>ok</result>
+</method>
+<method>
+<name>testRaises</name>
+<result>ok</result>
+</method>
+<method>
+<name>testWidget</name>
+<result>ok</result>
+</method>
+</testcase>
+</testrun>

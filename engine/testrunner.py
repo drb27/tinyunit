@@ -1,6 +1,6 @@
 from ..core.testcase import TestCase
 from .inspector import Inspector
-from .formatters import DefaultFormatter
+from .formatters import XmlFormatter,DefaultFormatter
 from .result import result
 from .stats import Stats
 
@@ -34,7 +34,7 @@ def runcase(case):
     s = Stats()
 
     # create a default formatter
-    f = DefaultFormatter()
+    f = XmlFormatter()
 
     # start the case
     print(f.format_start_set(),end="")

@@ -1,0 +1,8 @@
+<?xml version="1.0">
+<testrun date="whenever">
+    <testcase name="TestComplex">
+        <method>
+            <name>testTheThing</name>
+            <result>ok</result>
+    </testcase>
+</testrun>

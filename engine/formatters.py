@@ -21,6 +21,38 @@ class Formatter(object):
         def format_method_result(self,case,record):
                 return ""
 
+class XmlFormatter(Formatter):
+
+    def __init__(self):
+        pass
+
+    def format_start_set(self):
+        strs=[]
+        strs.append("<?xml version='1.0' encoding='ISO-8859-1'?>")
+        strs.append("<?xml-stylesheet type='text/xsl' href='results.xsl'?>")
+        strs.append("<testrun>\n")
+
+        return "\n".join(strs) 
+
+    def format_start_case(self,case):
+        return "<testcase name='%s'>\n" % case.__class__.__name__ 
+
+
+    def format_method_result(self,case,record):
+        strs=[]
+        strs.append("<method>")
+        strs.append("<name>%s</name>" % record.method)
+        strs.append("<result>%s</result>" % result.toString(record.result) )
+        strs.append("</method>\n")
+
+        return "\n".join(strs)
+
+    def format_end_case(self,cases):
+        return "</testcase>\n"
+
+    def format_end_set(self):
+        return "</testrun>\n"
+
 class DefaultFormatter(Formatter):
 
         def format_start_set(self):

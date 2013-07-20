@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href='results.xsl'?>
+<testrun date="whenever">
+    <testcase name="TestComplex">
+        <method>
+            <name>testTheThing</name>
+            <result>ok</result>
+        </method>
+        <method>
+            <name>testOtherThing</name>
+            <result>fail</result>
+        </method>
+        <method>
+            <name>testWentABitWrong</name>
+            <result>error</result>
+        </method>
+    </testcase>
+</testrun>
+
