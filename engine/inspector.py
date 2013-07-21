@@ -7,7 +7,7 @@ class Inspector(object):
     def __init__(self):
         pass
 
-    def cases(self):
+    def cases_per_method(self):
 
         # Start by generating a list of known subclasses from TestCase
         tc = TestCase.__subclasses__()
@@ -23,6 +23,9 @@ class Inspector(object):
 
         # return the dictionary
         return d
+
+    def cases(self):
+        return TestCase.__subclasses__()
 
     def testmethods(self,case):
         

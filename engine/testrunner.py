@@ -24,8 +24,8 @@ class TestRecorder(object):
         self.casemap[case].append(rec)
         return rec
 
-def runcase(case,enable_xml=False):
-    """ Runs all the tests in the given test case"""
+
+def runset(cases,enable_xml=False):
 
     # create a recorder
     recorder = TestRecorder()
@@ -38,9 +38,23 @@ def runcase(case,enable_xml=False):
         f = XmlFormatter()
     else:
         f = DefaultFormatter()
+    """ Runs the given test cases one by one"""
+    print(f.format_start_set(),end="")
+
+    for case in cases:
+        _runcase(case(),f,recorder,s,enable_xml)
+
+    print(f.format_end_set(),end="")
+
+    if not enable_xml:
+        print(str(s))
+
+    return recorder
+
+def _runcase(case,f,recorder,s,enable_xml=False):
+    """ Runs all the tests in the given test case"""
 
     # start the case
-    print(f.format_start_set(),end="")
     print(f.format_start_case(case),end="")
 
     # Discover the tests in the test case
@@ -75,9 +89,4 @@ def runcase(case,enable_xml=False):
 
     # end the case
     print(f.format_end_case(case),end="")
-    print(f.format_end_set(),end="")
 
-    if not enable_xml:
-        print(str(s))
-
-    return recorder

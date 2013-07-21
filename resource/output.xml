@@ -1,6 +1,12 @@
 <?xml version='1.0' encoding='ISO-8859-1'?>
 <?xml-stylesheet type='text/xsl' href='results.xsl'?>
 <testrun>
+<testcase name='SanityChecks'>
+<method>
+<name>checkSanity</name>
+<result>ok</result>
+</method>
+</testcase>
 <testcase name='ComplexTests'>
 <method>
 <name>testAReallyLongThingThatMustBeCoolAndYesWeDoGetTruncated</name>
