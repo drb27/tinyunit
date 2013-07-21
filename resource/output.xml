@@ -3,8 +3,12 @@
 <testrun>
 <testcase name='SanityChecks'>
 <method>
+<name>checkException</name>
+<result>error</result>
+</method>
+<method>
 <name>checkSanity</name>
-<result>ok</result>
+<result>fail</result>
 </method>
 </testcase>
 <testcase name='ComplexTests'>
@@ -33,4 +37,10 @@
 <result>ok</result>
 </method>
 </testcase>
+<summary>
+<category result='ok' count='6' />
+<category result='fail' count='1' />
+<category result='error' count='1' />
+</summary>
+
 </testrun>

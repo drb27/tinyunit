@@ -36,7 +36,20 @@
         </table>
         </div>
     </xsl:for-each>
-    <p>One day, a summary of the results may appear here</p>
+        <h2>Summary:</h2>
+    <xsl:for-each select="testrun/summary/category">
+        <xsl:choose>
+        <xsl:when test="@result='fail'">
+            <div style="background: #ff0000"><xsl:value-of select="@count"/>&#160;<xsl:value-of select="@result"/></div>
+        </xsl:when>
+        <xsl:when test="@result='error'">
+            <div style="background: #ffff00"><xsl:value-of select="@count"/>&#160;<xsl:value-of select="@result"/></div>
+        </xsl:when>
+        <xsl:otherwise>
+            <div style="background: #00ff00"><xsl:value-of select="@count"/>&#160;<xsl:value-of select="@result"/></div>
+        </xsl:otherwise>
+        </xsl:choose>
+    </xsl:for-each> 
     </body>
     </html>
 </xsl:template>
