@@ -21,6 +21,9 @@ class Formatter(object):
         def format_method_result(self,case,record):
                 return ""
 
+        def format_stats(self,results):
+                return ""
+
 class XmlFormatter(Formatter):
 
     def __init__(self):
@@ -53,6 +56,9 @@ class XmlFormatter(Formatter):
     def format_end_set(self):
         return "</testrun>\n"
 
+    def format_stats(self,results):
+        return results.toXml() + "\n"
+
 class DefaultFormatter(Formatter):
 
         def format_start_set(self):
@@ -75,3 +81,6 @@ class DefaultFormatter(Formatter):
 
         def format_end_case(self,case):
             return "Case complete.\n"
+
+        def format_stats(self,results):
+            return str(results) + "\n"

@@ -44,10 +44,8 @@ def runset(cases,enable_xml=False):
     for case in cases:
         _runcase(case(),f,recorder,s,enable_xml)
 
+    print(f.format_stats(s),end="")
     print(f.format_end_set(),end="")
-
-    if not enable_xml:
-        print(str(s))
 
     return recorder
 
