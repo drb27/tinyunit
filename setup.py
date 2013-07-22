@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from setuptools import setup
+from setuptools import setup,find_packages
 import tinyunit
 
 setup(
@@ -9,7 +9,7 @@ setup(
     description='Minimal unit test framework',
     author='David Bradshaw',
     author_email='david.bradshaw.usa@gmail.com',
-    packages=['tinyunit'],
+    packages=find_packages(),
     install_requires=['setuptools']
 )
 
