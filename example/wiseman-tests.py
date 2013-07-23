@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
-from tinyunit.engine.inspector import Inspector
-from tinyunit.core.testcase import TestCase
-from tinyunit.core.decorators import testmethod
-from tinyunit.engine.testrunner import runset
+from tinyunit.client import *
 
 from wiseman import meaning_of_life
 
