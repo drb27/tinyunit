@@ -1,46 +1,14 @@
 <?xml version='1.0' encoding='ISO-8859-1'?>
 <?xml-stylesheet type='text/xsl' href='results.xsl'?>
 <testrun>
-<testcase name='SanityChecks'>
+<testcase name='WiseTests'>
 <method>
-<name>checkException</name>
-<result>error</result>
-</method>
-<method>
-<name>checkSanity</name>
-<result>fail</result>
-</method>
-</testcase>
-<testcase name='ComplexTests'>
-<method>
-<name>testAReallyLongThingThatMustBeCoolAndYesWeDoGetTruncated</name>
-<result>ok</result>
-</method>
-<method>
-<name>testAdd</name>
-<result>ok</result>
-</method>
-<method>
-<name>testConstructor</name>
-<result>ok</result>
-</method>
-<method>
-<name>testPatch</name>
-<result>ok</result>
-</method>
-<method>
-<name>testRaises</name>
-<result>ok</result>
-</method>
-<method>
-<name>testWidget</name>
+<name>testMeaningOfLife</name>
 <result>ok</result>
 </method>
 </testcase>
 <summary>
-<category result='ok' count='6' />
-<category result='fail' count='1' />
-<category result='error' count='1' />
+<category result='ok' count='1' />
 </summary>
 
 </testrun>
