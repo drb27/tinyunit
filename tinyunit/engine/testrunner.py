@@ -75,6 +75,7 @@ def _runcase(case,f,recorder,s,enable_xml=False):
             r = result.failure
         except Exception as e:
             r = result.error
+            raise e
         finally:
 
             # record the result
