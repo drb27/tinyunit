@@ -29,7 +29,7 @@ class Mock(object):
                 # Is it callable?
                 if (name not in object.__getattribute__(self,'dnr')) and hasattr(attr,'__call__'):
                         def _instrumented_method(*args,**kwargs):
-                                self._record_call(name,[])
+                                self._record_call(name,args)
                                 result = attr(*args,**kwargs)
                                 return result
 
@@ -45,3 +45,5 @@ class TestMock(Mock):
                 super(TestMock,self).__init__()
         def doit(self):
                 return 42
+        def test(self,a,b,c=0,d=0):
+            pass
