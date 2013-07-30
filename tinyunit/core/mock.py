@@ -2,6 +2,8 @@ import types
 
 class Mock(object):
 
+        __instances = {}
+
         def __init__(self):
                 
                 # Init history
@@ -16,6 +18,13 @@ class Mock(object):
                         if hasattr(attr,'__call__'):
                                 self.dnr.append(name)
                 
+                # Record this mock object instance for later retrieval
+                if not self.__class__ in self.__instances.keys():
+                    self.__instances[self.__class__] = []
+
+                self.__instances[self.__class__].append(self)
+
+                # Finally, set up the magic method for attribute recollection ON THE CLASS OF THE INSTANTIATED OBJECT
                 self.__class__.__getattribute__ = types.MethodType(Mock.___getattribute__,self)
 
         def _record_call(self,name,args):
@@ -40,10 +49,10 @@ class Mock(object):
         def calls(self):
                 return len(self.history)
 
-class TestMock(Mock):
-        def __init__(self):
-                super(TestMock,self).__init__()
-        def doit(self):
-                return 42
-        def test(self,a,b,c=0,d=0):
-            pass
+        @classmethod
+        def reset_context(cls):
+            cls.__instances = {}
+
+        @classmethod
+        def get_instances_of(cls,mocks):
+            return cls.__instances[mocks]
