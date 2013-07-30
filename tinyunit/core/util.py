@@ -1,18 +1,6 @@
 import sys
 import os
 
-class RedirectStdout(object):
-    def __init__(self,stdout):
-        self._stdout = stdout
-
-    def __enter__(self):
-        self.old_stdout = sys.stdout
-        sys.stdout = self._stdout
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        self._stdout.flush()
-        sys.stdout = self.old_stdout
-
 class StdoutSuppression(object):
     def __init__(self,fn):
         self._fn = fn

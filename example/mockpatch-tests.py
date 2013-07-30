@@ -4,7 +4,7 @@ import os
 import sys
 
 from tinyunit.client import *
-from tinyunit.core.util import RedirectStdout,StdoutSuppression
+from tinyunit.core.util import StdoutSuppression
 
 import mockpatch
 from mockpatch import make_polite_conversation
