@@ -8,7 +8,7 @@ class UserInput(object):
 def make_polite_conversation(capitalise=True):
 
     ui = UserInput()
-    print("Hello, what is your name?")
+    #print("Hello, what is your name?")
     name = ui.getline().rstrip('\n')
     output = "Well hello there, " + name
     if capitalise:
