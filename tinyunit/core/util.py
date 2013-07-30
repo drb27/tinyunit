@@ -30,4 +30,4 @@ class StdoutSuppression(object):
         self._devnull.close()
 
     def execute_suppressed(self,*args,**kwargs):
-        self._fn(*args,**kwargs)
+        return self._fn(*args,**kwargs)

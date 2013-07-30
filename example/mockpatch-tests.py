@@ -26,8 +26,9 @@ class MockPatchTests(TestCase):
                 # Ensure we're starting from a clean mock object context
                 Mock.reset_context()
 
+                # Execute the method under test with output suppressed
                 with StdoutSuppression(make_polite_conversation) as suppressor:
-                    suppressor.execute_suppressed()
+                    self.assertEquals('Well hello there, FRED',suppressor.execute_suppressed(False))
 
                 # Retrieve the created mock object from the context
                 instances = Mock.get_instances_of(MockUserInput)
