@@ -4,22 +4,10 @@ import os
 import sys
 
 from tinyunit.client import *
+from tinyunit.core.util import RedirectStdout,StdoutSuppression
 
 import mockpatch
 from mockpatch import make_polite_conversation
-
-class RedirectStdout(object):
-    def __init__(self,stdout):
-        self._stdout = stdout
-
-    def __enter__(self):
-        self.old_stdout = sys.stdout
-        sys.stdout = self._stdout
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        self._stdout.flush()
-        sys.stdout = self.old_stdout
-
 
 class MockUserInput(Mock):
 
@@ -38,18 +26,8 @@ class MockPatchTests(TestCase):
                 # Ensure we're starting from a clean mock object context
                 Mock.reset_context()
 
-                # Temporarily silence stdout
-                f=open(os.devnull, 'w')
-
-                try:
-                    def _decorated():
-                        with RedirectStdout(f):
-                            return make_polite_conversation()
-
-                    # Check the output
-                    self.assertEquals('Well hello there, FRED', _decorated())                
-                finally:
-                    f.close()
+                with StdoutSuppression(make_polite_conversation) as suppressor:
+                    suppressor.execute_suppressed()
 
                 # Retrieve the created mock object from the context
                 instances = Mock.get_instances_of(MockUserInput)
