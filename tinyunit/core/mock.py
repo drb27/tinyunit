@@ -13,8 +13,9 @@ class Mock(object):
                 self.dnr = []
 
                 # Add all of my callables to the Do Not Record list
-                for name in Mock.__dict__.keys():
-                        attr = getattr(Mock,name)
+                #for name in Mock.__dict__.keys():
+                for name in dir(Mock): 
+                        attr = object.__getattribute__(Mock,name)
                         if hasattr(attr,'__call__'):
                                 self.dnr.append(name)
                 
@@ -22,15 +23,13 @@ class Mock(object):
                 if not self.__class__ in self.__instances.keys():
                     self.__instances[self.__class__] = []
 
+                # Add ourself to the list of instances
                 self.__instances[self.__class__].append(self)
-
-                # Finally, set up the magic method for attribute recollection ON THE CLASS OF THE INSTANTIATED OBJECT
-                self.__class__.__getattribute__ = types.MethodType(Mock.___getattribute__,self)
 
         def _record_call(self,name,args):
                 self.history.append({ name : args } )
 
-        def ___getattribute__(self,name):
+        def __getattribute__(self,name):
         
                 # Ask the superclass to retrieve the attribute
                 attr = object.__getattribute__(self,name)
