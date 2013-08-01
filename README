@@ -1,3 +1,44 @@
+Introduction
+============
+
+tinyunit is a minimal unit test framework written for python 3.X. Although it is
+actually functional and quite useful, it's main purpose in life was to teach me
+some of python's features, and to get used to using tools such as vim, git,
+github, etc. 
+
+This is very much a work in progress. Use at your own risk. I 
+
+
+Getting tinyunit
+================
+
+Source code is hosted in a public repository on GitHub:
+
+    http://github.com/drb27/tinyunit
+
+
+Installing tinyunit
+===================
+
+    0. Make sure you have python3 and setuptools installed on your system. 
+    1. Obtain the source code form GitHub
+    2. From the root directory (i.e. the location of this file):
+        a) Execute ./make. That little script will compile an egg and install it
+           for you. 
+
+        b) (optional) Execute example/wiseman-tests.py. This executes a single
+           unit test (which should pass).  
+
+
+How do I use tinyunit?
+======================
+
+Look at the examples in the example directory. 
+
+
+License
+=======
+
 The MIT License (MIT)
 
 Copyright (c) 2013 David R. Bradshaw <david.bradshaw.usa@gmail.com>
@@ -18,3 +59,5 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
