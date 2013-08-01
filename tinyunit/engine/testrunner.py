@@ -1,3 +1,6 @@
+import traceback
+import sys
+
 from ..core.testcase import TestCase
 from .inspector import Inspector
 from .formatters import XmlFormatter,DefaultFormatter
@@ -73,9 +76,14 @@ def _runcase(case,f,recorder,s,enable_xml=False):
         
         except TestCase.AssertFailureException as e:
             r = result.failure
+
+            # Dump the raw exception to stderr
+            print(traceback.format_exc(),file=sys.stderr)     
+
         except Exception as e:
             r = result.error
             raise e
+
         finally:
 
             # record the result
