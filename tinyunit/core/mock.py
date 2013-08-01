@@ -26,8 +26,8 @@ class Mock(object):
                 # Add ourself to the list of instances
                 self.__instances[self.__class__].append(self)
 
-        def _record_call(self,name,args,kwargs):
-                self.history.append((name,args,kwargs))
+        def _record_call(self,name,args,kwargs,result=None):
+                self.history.append((name,args,kwargs,result))
 
         def __getattribute__(self,name):
         
@@ -37,8 +37,8 @@ class Mock(object):
                 # Is it callable?
                 if (name not in object.__getattribute__(self,'dnr')) and hasattr(attr,'__call__'):
                         def _instrumented_method(*args,**kwargs):
-                                self._record_call(name,args,kwargs)
                                 result = attr(*args,**kwargs)
+                                self._record_call(name,args,kwargs,result)
                                 return result
 
                         return _instrumented_method

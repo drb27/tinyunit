@@ -200,6 +200,15 @@ class MockRegressionTests(TestCase):
         for i in [out,out2]:
             self.assertTrue( i.dnr.count('_record_call') > 0 )
 
+  
+    @testmethod
+    def testMethodReturnValueStored(self):
+
+        out = MockDerivative()
+        result = out.singleposparam(5)
+
+        self.assertEquals(result, out.history[0][3])
+
 if __name__=="__main__":
 
         # Check to see if XML output is enabled
