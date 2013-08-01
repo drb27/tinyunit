@@ -198,6 +198,33 @@ class MockTests(TestCase):
         self.assertFalse( out.called('simplemethod') ) 
         self.assertFalse( out.called('nosuchmethod') )
 
+
+    @testmethod
+    def testByMethod(self):
+    
+        out = MockDerivative()
+
+        out.simplecase()
+        out.singleposparam(0)
+        out.simplecase()
+        out.singleposparam(1)
+        out.simplecase()
+        out.simplecase()
+        out.singleposparam(2)
+
+        # Use list comprehension to build a list of calls to singleposparam
+        calllist = [x for x in out.callsbymethod('singleposparam')]
+        self.assertEquals( len(calllist), 3 )
+ 
+        expectedparamvalue = 0
+
+        # Check each entry
+        for call in calllist:
+            self.assertEquals(call[0],'singleposparam')
+            self.assertEquals(len(call[1]),1)
+            self.assertEquals(call[1][0], expectedparamvalue )
+            expectedparamvalue += 1
+
 class MockRegressionTests(TestCase):
 
     def __init__(self):

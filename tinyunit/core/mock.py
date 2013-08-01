@@ -55,6 +55,12 @@ class Mock(object):
                     return True
             return False
 
+        def callsbymethod(self,method):
+            for call in self.history:
+                if call[0] == method:
+                    yield call
+            
+
         @classmethod
         def reset_context(cls):
             cls.__instances = {}
