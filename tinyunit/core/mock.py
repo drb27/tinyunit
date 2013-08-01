@@ -48,6 +48,13 @@ class Mock(object):
         def calls(self):
                 return len(self.history)
 
+
+        def called(self,method):
+            for call in self.history:
+                if call[0] == method:
+                    return True
+            return False
+
         @classmethod
         def reset_context(cls):
             cls.__instances = {}

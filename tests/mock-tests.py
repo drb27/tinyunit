@@ -186,6 +186,18 @@ class MockTests(TestCase):
         self.assertTrue('val' in namedargs.keys())
         self.assertEquals(8, namedargs['val'])
 
+    @testmethod
+    def testCalled(self):
+        out = MockDerivative()
+
+        out.simplecase()
+        out.singleposparam(4)
+
+        self.assertTrue( out.called('simplecase') )
+        self.assertTrue( out.called('singleposparam') )
+        self.assertFalse( out.called('simplemethod') ) 
+        self.assertFalse( out.called('nosuchmethod') )
+
 class MockRegressionTests(TestCase):
 
     def __init__(self):
