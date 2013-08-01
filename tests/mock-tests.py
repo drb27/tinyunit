@@ -119,6 +119,31 @@ class MockTests(TestCase):
         self.assertEquals(1, posargs[0])
 
     @testmethod
+    def testSimplePosParamMultiple(self):
+
+        # Attempt to create the mock derivative
+        out = MockDerivative()
+        
+        for x in range(5):
+            # Call the simplecase method
+            self.assertEquals(42+x,out.singleposparam(x))
+
+        # Check history length
+        self.assertEquals(5, len(out.history))
+
+        for x in range(5):
+            # Check no parameters
+            history = out.history[x]
+            methodname = history[0]
+            posargs = history[1]
+            namedargs = history[2]
+           
+            self.assertEquals(methodname,'singleposparam')
+            self.assertEquals(1,len(posargs))
+            self.assertEquals(0,len(namedargs))
+            self.assertEquals(x, posargs[0])
+
+    @testmethod
     def testSingleParamWithDefaultUnused(self):
         
         out = MockDerivative()
