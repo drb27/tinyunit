@@ -4,3 +4,4 @@ from tinyunit.core.decorators import testmethod
 from tinyunit.engine.testrunner import runset
 from tinyunit.core.mock import Mock
 from tinyunit.core.patch import patch
+from tinyunit.core.script import run

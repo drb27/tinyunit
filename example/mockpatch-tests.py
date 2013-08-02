@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import argparse
 import os
 import sys
 
@@ -44,14 +43,4 @@ class MockPatchTests(TestCase):
                 self.assertEquals(1,instances[0].calls())
 
 if __name__=='__main__':
-
-        # Check to see if XML output is enabled
-        parser = argparse.ArgumentParser()
-        parser.add_argument("-x","--xml",help="Output XML report", action="store_true")
-        args = parser.parse_args()
-
-        # Create an inspector to retrieve test cases automatically
-        i=Inspector()
-        
-        # Run a set of test cases
-        runset(i.cases(), enable_xml=args.xml)
+    run()
