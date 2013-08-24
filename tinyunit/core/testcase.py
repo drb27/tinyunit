@@ -38,6 +38,10 @@ class TestCase(object):
         if not a==b:
             raise TestCase.AssertFailureException()
 
+    def assertIdentity(self,a,b):
+        if a is not b:
+            raise TestCase.AssertFailureException()
+
     def assertNotEqual(self,a,b):
         if a==b:
             raise TestCase.AssertFailureException()
