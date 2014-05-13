@@ -10,7 +10,8 @@ class result(object):
     success=0
     failure=1
     error=2
-    unknown=3
+    unimplemented=3
+    unknown=4
 
     @staticmethod
     def toString(r,color=False):
@@ -22,6 +23,8 @@ class result(object):
                 return bcolors.FAIL + "fail" + bcolors.ENDC
             elif r==result.error:
                 return bcolors.WARNING + "error" + bcolors.ENDC
+            elif r==result.unimplemented:
+                return bcolors.HEADER + "not implemented" + bcolors.ENDC
             else:
                 return bcolors.WARNING + "???" + bcolors.ENDC
         else:
@@ -31,5 +34,7 @@ class result(object):
                 return "fail"
             elif r==result.error:
                 return "error"
+            elif r==result.unimplemented:
+                return "not implemented"
             else:
                 return "???"
