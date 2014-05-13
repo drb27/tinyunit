@@ -80,6 +80,9 @@ def _runcase(case,f,recorder,s,enable_xml=False):
             # Dump the raw exception to stderr
             print(traceback.format_exc(),file=sys.stderr)     
 
+        except TestCase.NotImplementedException as e:
+            r = result.unimplemented
+
         except Exception as e:
             r = result.error
             raise e

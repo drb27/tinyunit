@@ -15,7 +15,11 @@ class TestCase(object):
 
     class AssertFailureException(Exception):
         def __init__(self):
-                pass
+            pass
+
+    class NotImplementedException(Exception):
+        def __init__(self):
+            pass
     
     def __init__(self):
         pass
