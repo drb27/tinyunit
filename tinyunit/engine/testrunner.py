@@ -42,13 +42,13 @@ def runset(cases,enable_xml=False):
     else:
         f = DefaultFormatter()
     """ Runs the given test cases one by one"""
-    print(f.format_start_set(),end="")
+    print f.format_start_set(),
 
     for case in cases:
         _runcase(case(),f,recorder,s,enable_xml)
 
-    print(f.format_stats(s),end="")
-    print(f.format_end_set(),end="")
+    print f.format_stats(s),
+    print f.format_end_set(),
 
     return recorder
 
@@ -56,7 +56,7 @@ def _runcase(case,f,recorder,s,enable_xml=False):
     """ Runs all the tests in the given test case"""
 
     # start the case
-    print(f.format_start_case(case),end="")
+    print f.format_start_case(case),
 
     # Discover the tests in the test case
     i=Inspector()
@@ -78,7 +78,7 @@ def _runcase(case,f,recorder,s,enable_xml=False):
             r = result.failure
 
             # Dump the raw exception to stderr
-            print(traceback.format_exc(),file=sys.stderr)     
+            print >> sys.stderr, traceback.format_exc()     
 
         except TestCase.NotImplementedException as e:
             r = result.unimplemented
@@ -94,8 +94,8 @@ def _runcase(case,f,recorder,s,enable_xml=False):
             s.addResult(r)
 
             # Display progress
-            print(f.format_method_result(case,record),end="")
+            print f.format_method_result(case,record),
 
     # end the case
-    print(f.format_end_case(case),end="")
+    print f.format_end_case(case),
 
