@@ -62,6 +62,9 @@ def _runcase(case,f,recorder,s,enable_xml=False):
     i=Inspector()
     tests=i.testmethods(case)
 
+    # Run test case setup
+    case.setup()
+
     # Execute each
     for testname in tests:
         r = result.unknown
@@ -92,6 +95,9 @@ def _runcase(case,f,recorder,s,enable_xml=False):
 
             # Display progress
             print(f.format_method_result(case,record),end="")
+
+    # Run test case teardown
+    case.teardown()
 
     # end the case
     print(f.format_end_case(case),end="")

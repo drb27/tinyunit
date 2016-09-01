@@ -20,6 +20,12 @@ class TestCase(object):
     def __init__(self):
         pass
 
+    def setup(self):
+        pass
+
+    def teardown(self):
+        pass
+
     def assertTrue(self,expr):
         if not expr:
             raise TestCase.AssertFailureException()
