@@ -40,7 +40,7 @@ class MockPatchTests(TestCase):
                 self.assertEquals(1,len(instances))
 
                 # Check that UserInput.getline was called just once
-                self.assertEquals(1,instances[0].calls())
+                self.assertEquals(1,len([x for x in instances[0].callsbymethod("getline")]))
 
 if __name__=='__main__':
     run()
